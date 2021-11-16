@@ -54,6 +54,23 @@ local _PhrasesList = {
 	"DA v2 releases after v9.9.9, after that, no update will be logged by it's version :O",
 	"the Earl of Sandwich (John Montagu) invented the sandwich so he wouldn’t have to leave his gambling table to eat",
 	"a narwhal's tusk reveals its past living conditions",
-	"a pig's scientific name is \"sus\""
+	"a pig's scientific name is \"sus\"",
+	"some sea snakes can breathe through their skin",
+	"the heads on Easter Island have bodies lmao",
+	"The moon has \"moonquakes\" LOL",
+	"it took 570 gallons to paint the exterior of the White House",
+	"we shake hands to show we’re unarmed xd",
+	"professional genshin impact player more like professional child groomer",
+	"zwolf (a dev of iy) is a chad tbh",
+	"your dad is sus",
+	"decode what this will be used for: 7fjhi",
+	"atp zombie stands for \"a toilet plunger zombie\"",
+	"https://www.reddit.com/r/memes/",
+	"discord.com/login can be easily gone to by using discord's shortened URL: dis.gd/login",
+	"among us memes are cringe, among us is just a good murder mystery space themed game",
+	"vape v4 exists on roblox (its also in the scripts tab lol)",
+	"have a good day",
+	"how to not be a simp, by dr. antisimp: chapter 1, page 1: to not be a simp you have to not simp",
+	"no comment"
 }
 return tostring(_PhrasesList[math.random(1, #_PhrasesList)])
