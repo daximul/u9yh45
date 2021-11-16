@@ -63,4 +63,31 @@ AddScript("Anticheat Disabler", "Toon", "Skywars", function()
 	end)
 end)
 
+AddScript("Deadcoins Autofarm", "Toon", "Be Dead Forever Simulator", function()
+	local CMP = nil
+	for i,v in pairs(workspace:GetDescendants()) do
+		if v.Name == "Computer" and v:FindFirstChild("Monitor") then
+			CMP = v.Monitor
+		end
+	end
+	while CMP == nil do wait() end
+	for i,v in pairs(CMP:GetDescendants()) do
+		if v:IsA("ClickDetector") and v.Name == "ClickDetector" then
+			spawn(function()
+				while wait(0.5) do
+        				fireclickdetector(v, 0)
+				end
+			end)
+		end
+	end
+	notify("bdfs", "firing pc")
+end)
+
+AddScript("Infinite Cash & Gems", "colb", "Pop It Simulator", function()
+	while wait() do
+		game:GetService("ReplicatedStorage").Remotes.pickUpCash:FireServer(unpack({[1] = "cash18"}))
+		game:GetService("ReplicatedStorage").Remotes.addGems:FireServer(unpack({[1] = "gem18"}))
+	end
+end)
+
 return ScriptsHolder
