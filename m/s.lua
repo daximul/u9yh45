@@ -90,4 +90,8 @@ AddScript("Infinite Cash & Gems", "colb", "Pop It Simulator", function()
 	end
 end)
 
+AddScript("Hitbox Expander", "Toon", "Be a Parkour Ninja", function()
+	do local a=game:GetService("Players")local b=15;a.PlayerAdded:Connect(function(c)wait()pcall(function()c.Character.HumanoidRootPart.Size=Vector3.new(b,b,b)c.Character.HumanoidRootPart.Transparency=0.7;c.Character.HumanoidRootPart.BrickColor=BrickColor.new("Bright red")c.Character.HumanoidRootPart.Material="Plastic"c.Character.HumanoidRootPart.CanCollide=false end)c.CharacterAdded:Connect(function()wait()pcall(function()c.Character.HumanoidRootPart.Size=Vector3.new(b,b,b)c.Character.HumanoidRootPart.Transparency=0.7;c.Character.HumanoidRootPart.BrickColor=BrickColor.new("Bright red")c.Character.HumanoidRootPart.Material="Plastic"c.Character.HumanoidRootPart.CanCollide=false end)end)end)for d,e in next,a:GetPlayers()do if e.Name~=a.LocalPlayer.Name then wait()pcall(function()e.Character.HumanoidRootPart.Size=Vector3.new(b,b,b)e.Character.HumanoidRootPart.Transparency=0.7;e.Character.HumanoidRootPart.BrickColor=BrickColor.new("Bright red")e.Character.HumanoidRootPart.Material="Plastic"e.Character.HumanoidRootPart.CanCollide=false end)e.CharacterAdded:Connect(function()wait()pcall(function()e.Character.HumanoidRootPart.Size=Vector3.new(b,b,b)e.Character.HumanoidRootPart.Transparency=0.7;e.Character.HumanoidRootPart.BrickColor=BrickColor.new("Bright red")e.Character.HumanoidRootPart.Material="Plastic"e.Character.HumanoidRootPart.CanCollide=false end)end)end end;game:GetService("StarterGui"):SetCore("SendNotification",{["Title"]="Hitbox Expander",["Text"]="Loaded"})end
+end)
+
 return ScriptsHolder
