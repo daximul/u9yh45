@@ -2,37 +2,35 @@ local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/daxim
 local window1 = library:Window("Scripts")
 local window2 = library:Window("LocalPlayer")
 
+local RemoveFallDamage = false
+local AutoDisasterDetect = false
+local SpamSounds = false
+local DoNoclip = false
+
 library:Keybind("Q")
 
 window2:Slider("Walkspeed",16,120,5, function(value)
    game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = value
 end)
 
-
 window2:Slider("JumpPower",50,300,20, function(value)
    game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = value
 end)
 
 window2:Toggle("Noclip", false, function(boolrfq)
-    getgenv().trfffffinketcs = boolrfq
-        game:GetService("RunService").RenderStepped:Connect(function()
-if getgenv().trfffffinketcs then
-        game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
-        end
-end)
+    DoNoclip = boolrfq
 end)
 
 window1:Label("Client-Side Copy", Color3.fromRGB(127, 143, 166))
 window1:Button("Copy Green Balloon",function()
-    local player = tostring(game.Players.LocalPlayer.Name)
 while true do
-if game.Workspace:FindFirstChild("GreenBalloon") then
-if not game.Workspace[player]:FindFirstChild("GreenBalloon") and not game.Players.LocalPlayer.Backpack:FindFirstChild("GreenBalloon") then
-local workspaceClone = game.Workspace.GreenBalloon:Clone()
-workspaceClone.Parent = game.Workspace[player]
+if workspace:FindFirstChild("GreenBalloon") then
+if not game.Players.LocalPlayer.Character:FindFirstChild("GreenBalloon") and not game.Players.LocalPlayer.Backpack:FindFirstChild("GreenBalloon") then
+local workspaceClone = workspace.GreenBalloon:Clone()
+workspaceClone.Parent = game.Players.LocalPlayer.Character
 end
 else
-local balloonCheck = game.Workspace:GetDescendants()
+local balloonCheck = workspace:GetDescendants()
 local balloonClone
 for i, balloon in ipairs(balloonCheck) do
 if (tostring(balloon.Name) == "GreenBalloon") then
@@ -40,9 +38,9 @@ balloonClone = balloon:Clone()
 wait()
 end
 end
-balloonClone.Parent = game.Workspace
-local workspaceClone = game.Workspace.GreenBalloon:Clone()
-workspaceClone.Parent = game.Workspace[player]
+balloonClone.Parent = workspace
+local workspaceClone = workspace.GreenBalloon:Clone()
+workspaceClone.Parent = game.Players.LocalPlayer.Character
 end
 wait()
 end
@@ -123,21 +121,12 @@ end)
 end)
 
 window1:Toggle("FE Spam Sounds",false, function(State1)
-        getgenv().hit = State1
-        while wait() do
-            if getgenv().hit then
-           for i,v in pairs(game.Workspace:GetDescendants()) do
-if v:IsA("Sound") then 
-v:Play()
-end
-end
-end
-end
+    SpamSounds = State1
 end)
 
 window1:Toggle("Auto Disaster Detect",false,function(vasde)
-    getgenv().trincckets = vasde
-if getgenv().trincckets then
+    AutoDisasterDetect = vasde
+if AutoDisasterDetect == true then
     local Character = game:GetService("Players").LocalPlayer.Character
 local Tag = Character:FindFirstChild("SurvivalTag")
 if Tag then
@@ -167,20 +156,12 @@ game:GetService("Players").LocalPlayer.CharacterAdded:connect(
 end
 end)
 
-window1:Toggle("Free Compass",false,function(vacvsde)
-    getgenv().trink545ets = vacvsde
-if getgenv().trink545ets then
-    TextLabel = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.MapVotePage
-TextLabel.Visible = true
-else
-    TextLabel = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.MapVotePage
-TextLabel.Visible = false
-end
+window1:Button("Free Compass",function()
+    game:GetService("Players").LocalPlayer.PlayerGui.MainGui.MapVotePage.Visible = not game:GetService("Players").LocalPlayer.PlayerGui.MainGui.MapVotePage.Visible
 end)
-window1:Button("Remove FallDamage",function()
-    while wait() do
-game:GetService("Workspace")[game.Players.LocalPlayer.Name].FallDamageScript:Destroy()
-end
+
+window1:Toggle("Remove Fall Damage",false,function(fffv)
+    RemoveFallDamage = fffv
 end)
 window2:Label("Teleport Areas", Color3.fromRGB(127, 143, 166))
 window2:Button("Teleport To Lobby",function()
@@ -203,3 +184,31 @@ char.Humanoid:MoveTo(Vector3.new(cPos.X,cPos.Y,fPos))
 end
 end
 end)
+
+spawn(function()
+    game:GetService("StarterGui"):SetCore("SendNotification", {     
+        ["Title"] = "Toggle Gui",     
+        ["Text"] = "Q"
+    })
+end)
+
+game:GetService("RunService").RenderStepped:Connect(function()
+    if DoNoclip == true then
+        game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid"):ChangeState(11)
+    end
+end)
+
+while wait() do
+    if RemoveFallDamage == true then
+        if game:GetService("Players").LocalPlayer.Character:FindFirstChild("FallDamageScript") then
+            game:GetService("Players").LocalPlayer.Character.FallDamageScript:Destroy()
+        end
+    end
+    if SpamSounds == true then
+        for i,v in pairs(workspace:GetDescendants()) do
+            if v:IsA("Sound") then 
+                v:Play()
+            end
+        end
+    end
+end
