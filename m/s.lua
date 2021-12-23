@@ -9,9 +9,7 @@ local AddScript = function(ScriptName, Devs, GameItWorksOn, ScriptFunction)
 	}
 end
 
-local LoadURL = function(link)
-	return loadstring(game:HttpGetAsync((tostring(link))))();
-end
+local LoadURL = function(link) return loadstring(game.HttpGetAsync(game, tostring(link)))() end
 
 AddScript("[ CMD-X ]", "Various Developers", "[Universal]", function()
 	LoadURL("https://raw.githubusercontent.com/Toon-arch/cmdx-1.5/main/minified.lua")
@@ -61,6 +59,21 @@ AddScript("Anticheat Disabler", "Toon", "Skywars", function()
 			Players.LocalPlayer.PlayerGui.Extra.AntiSploitClient2:Destroy()
 		end
 	end)
+end)
+
+AddScript("Anticheat Disabler", "Toon", "Epic Minigames", function()
+	local game = game
+	local GetService = game.GetService
+	local Players = GetService(game, "Players")
+	local Destroy, GetChildren, Find =
+		game.Destroy,
+		game.GetChildren,
+		string.find
+	for i,v in pairs(GetChildren(Players.LocalPlayer.PlayerScripts)) do
+		if Find(v.Name, "Il") or Find(v.Name, "lI") or Find(v.Name, "II") or Find(v.Name, "ll") then
+			Destroy(v)
+		end
+	end
 end)
 
 AddScript("Deadcoins Autofarm", "Toon", "Be Dead Forever Simulator", function()
