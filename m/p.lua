@@ -71,6 +71,7 @@ local _PhrasesList = {
 	"vape v4 exists on roblox (its also in the scripts tab lol)",
 	"have a good day",
 	"how to not be a simp, by dr. antisimp: chapter 1, page 1: to not be a simp you have to not simp",
-	"no comment"
+	"no comment",
+	"I have your dad in my basement btw"
 }
 return tostring(_PhrasesList[math.random(1, #_PhrasesList)])
